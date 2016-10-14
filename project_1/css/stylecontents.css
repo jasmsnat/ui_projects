@@ -1,21 +1,9 @@
-h5 {
-    color:cyan
-}
-
-h6 {
-    color:darkorchid
-}
-
-h3 {
-    color:red
-}
-
 a:link, a:visited {
     background-color: deepskyblue;
+    color:white;
     padding: 14px 25px;
-    text-decoration: none;
     text-align: center;
-    color: white;
+    text-decoration: none;
     display: inline-block;
 }
 
@@ -26,5 +14,3 @@ a:hover {
 a:active {
     background-color: orangered;
 }
-
-
