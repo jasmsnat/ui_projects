@@ -1,21 +1,25 @@
-h5 {
-    color:cyan
+h6 {
+    color:darkorchid;
 }
 
-h6 {
-    color:darkorchid
+h5 {
+    color:cyan;
 }
 
 h3 {
-    color:red
+    color:red;
+}
+
+h1 {
+    color:red;
 }
 
 a:link, a:visited {
     background-color: deepskyblue;
-    padding: 14px 25px;
-    text-decoration: none;
+    color:white;
+    padding: 7px 12px;
     text-align: center;
-    color: white;
+    text-decoration: none;
     display: inline-block;
 }
 
@@ -27,4 +31,10 @@ a:active {
     background-color: orangered;
 }
 
+.Sample2 {
+    color:darkgoldenrod
+}
 
+#Sample1 {
+    color:aqua
+}
