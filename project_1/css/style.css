@@ -20,7 +20,7 @@ a:link, a:visited {
     padding: 7px 12px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+   
 }
 
 a:hover {
@@ -37,4 +37,20 @@ a:active {
 
 #Sample1 {
     color:aqua
+}
+
+ul {
+    display: flex;
+    list-style: none; /* removes bullet points */
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 480px) {
+    ul {
+        flex-direction: column;    
+    }
+    
+    li {
+        margin-top: 20px;
+    }
 }
