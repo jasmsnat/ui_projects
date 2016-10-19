@@ -1,6 +1,6 @@
 'use strict';
 
-function person() {
+function personFunc() {
     //public variables are with this
     this.address='Texas';
     
@@ -19,7 +19,7 @@ function person() {
 }
 
 //instantiating an object
-var personObj = new person();
+var personObj = new personFunc();
 
 console.log(personObj.address);
 
