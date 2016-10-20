@@ -5,7 +5,7 @@ function Person() {
     var dob = '';
     var gender = '';
     var country = '';
-    var cars = [];
+    var cars = '';
 
     /*Sets first name*/
     this.setFirstName = function(fName) {
@@ -32,8 +32,8 @@ function Person() {
         country = count;
     }
     
-    this.setCars = function(carsP) {
-        cars = carsP;
+    this.setCars = function(carsX) {
+        cars = carsX;
     }
     
     this.getFirstName = function() {
@@ -54,17 +54,17 @@ function Person() {
         console.log('First Name: ' + firstName);
         console.log('Last Name: ' + lastName);
         console.log('Address: ' + address);
+        console.log('Country: ' + country);
         console.log('DOB: ' + dob);
         console.log('Gender: ' + gender);
-        console.log('Country: ' + country);
-        if (cars.length > 0){
+        console.log('Car(s): ' + cars);
+       /* if (cars.length > 0){
             console.log('Cars List') 
             cars.forEach(function(x){
                 console.log(x);
             })
-        }
-    }
-    
+        }*/
+    }   
 }
 
 var personArray = []; //since this is above, our function can access it. this is because it is a variable and must be declared before it can be called.
@@ -79,6 +79,25 @@ function submitEntry() {
     personObj.setAddress(address);
     var dob = document.getElementById('DOBirth').value;
     personObj.setDob(dob);
+    
+    var genderArray = document.getElementsByName("gender");
+    for(var i=0; i<genderArray.length; i++){
+        if(genderArray[i].checked){
+            gender = genderArray[i].value;
+        }
+    }
+    personObj.setGender(gender);
+    
+    var carCheck = document.getElementsByName('carType');
+    var x = '';
+    for(var i=0; i<carCheck.length; i++){
+        if(carCheck[i].checked){
+            x += "," + carCheck[i].value;
+        }
+    }
+    if(x) x = x.substring(1);
+    personObj.setCars(x);
+    
     personObj.checkData();
     personArray.push(personObj);
 //    checkArray(personArray);
@@ -97,8 +116,12 @@ function generateTable(sample) {
     sample.forEach(function(x){
         template += "PERSON " + i + "<br>";
         //template = template + "PERSON " + i + "<br>";
-        template += "First Name " + x.getFirstName() + "<br>";
-        template += "Last Name " + x.getLastName(); + "<br>";
+        template += "First Name: " + x.getFirstName() + "<br>";
+        template += "Last Name: " + x.getLastName() + "<br>";
+        template += "Address: " + x.getAddress() + "<br>";
+        template += "DOB: " + x.getDob() + "<br>";
+        template += "Gender: " + x.getGender() + "<br>";
+        template += "Car(s): " + x.getCars() + "<br>";
         template += "<hr>";
         i++;
     })
