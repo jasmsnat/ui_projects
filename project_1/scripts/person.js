@@ -15,7 +15,15 @@ function personFunc() {
     
     this.getFirstName=function(){
         return firstName;
-    }    
+    } 
+    
+    this.setLastName=function(lName){
+        lastName=lName;
+    }
+    
+    this.getLastName=function(){
+        return lastName;
+    }
 }
 
 //instantiating an object
