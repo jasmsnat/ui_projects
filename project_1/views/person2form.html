@@ -35,36 +35,21 @@
                         <input type="text" name="add" id="add" placeholder="Enter Address">
                     </div>
                 </div>
-                
+                                
                 <div class="row">
                     <div class="col-md-2">
-                        Country
+                        Continent
                     </div>
-                    <div class="col-md-8">
-                        <div class="bfh-selectbox bfh-countries" data-country="US" data-flags="true">                    
-                            <input type="hidden" value="">
-                            <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
-                                <span class="bfh-selectbox-option input-medium" data-option=""></span>
-                                <b class="caret"></b>
-                            </a>
-                            <div class="bfh-selectbox-options">
-                                <input type="text" class="bfh-selectbox-filter">
-                                <div role="listbox">
-                                    <ul role="option"> 
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-2">
-                        Country2
-                    </div>
-                    <div class="col-md-8">
-                        <button onclick="$('#countries1').bfhcountries({country: 'US'})" class="btn">Load Countries</button>
-                        <select id="countries1" class="input-medium"></select>
+                    <div class="col-md-4">
+                        <select>
+                            <option name='cont' id='contNA' value="North America">North America</option>
+                            <option name='cont' id='contSA' value="South America">South America</option>
+                            <option name='cont' id='contAsia' value='Asia'>Asia</option>
+                            <option name='cont' id='contEuro' value='Europe'>Europe</option>
+                            <option name='cont' id='contAfri' value='Africa'>Africa</option>
+                            <option name='cont' id='contAust' value='Australia'>Australia</option>
+                            <option name='cont' id='contAnta' value='Antarctica'>Antarctica</option>
+                        </select>
                     </div>
                 </div>
                 

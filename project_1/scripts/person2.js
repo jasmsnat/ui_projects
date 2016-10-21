@@ -4,7 +4,7 @@ function Person() {
     var address = '';
     var dob = '';
     var gender = '';
-    var country = '';
+    var continent = '';
     var cars = '';
 
     /*Sets first name*/
@@ -28,8 +28,8 @@ function Person() {
         gender = genType;
     }
     
-    this.setCountry = function(count) {
-        country = count;
+    this.setContinent = function(conti) {
+        continent = conti;
     }
     
     this.setCars = function(carsX) {
@@ -47,14 +47,14 @@ function Person() {
     this.getAddress = () => address;
     this.getDob = () => dob;
     this.getGender = () => gender;
-    this.getCountry = () => country;
+    this.getContinent = () => continent;
     this.getCars = () => cars;
     
     this.checkData = function() {
         console.log('First Name: ' + firstName);
         console.log('Last Name: ' + lastName);
         console.log('Address: ' + address);
-        console.log('Country: ' + country);
+        console.log('Continent: ' + continent);
         console.log('DOB: ' + dob);
         console.log('Gender: ' + gender);
         console.log('Car(s): ' + cars);
@@ -71,28 +71,41 @@ var personArray = []; //since this is above, our function can access it. this is
 
 function submitEntry() {
     var personObj = new Person();
+    
     var firstName = document.getElementById("firstName").value;
     personObj.setFirstName(firstName);
+    
     var lastName = document.getElementById('lastName').value;
     personObj.setLastName(lastName);
+    
     var address = document.getElementById("add").value;
     personObj.setAddress(address);
+    
+    var continentList = document.getElementsByName('cont');
+    var c = '';
+    for(var i=0; i<continentList.length; i++){
+        if(continentList[i].selected){
+            c = continentList[i].value;
+        }
+    }
+    personObj.setContinent(c);
+    
     var dob = document.getElementById('DOBirth').value;
     personObj.setDob(dob);
     
-    var genderArray = document.getElementsByName("gender");
-    for(var i=0; i<genderArray.length; i++){
-        if(genderArray[i].checked){
-            gender = genderArray[i].value;
+    var genderList = document.getElementsByName("gender");
+    for(var i=0; i<genderList.length; i++){
+        if(genderList[i].checked){
+            gender = genderList[i].value;
         }
     }
     personObj.setGender(gender);
     
-    var carCheck = document.getElementsByName('carType');
+    var carList = document.getElementsByName('carType');
     var x = '';
-    for(var i=0; i<carCheck.length; i++){
-        if(carCheck[i].checked){
-            x += "," + carCheck[i].value;
+    for(var i=0; i<carList.length; i++){
+        if(carList[i].checked){
+            x += "," + carList[i].value;
         }
     }
     if(x) x = x.substring(1);
@@ -119,6 +132,7 @@ function generateTable(sample) {
         template += "First Name: " + x.getFirstName() + "<br>";
         template += "Last Name: " + x.getLastName() + "<br>";
         template += "Address: " + x.getAddress() + "<br>";
+        template += "Continent: " + x.getContinent() + "<br>";
         template += "DOB: " + x.getDob() + "<br>";
         template += "Gender: " + x.getGender() + "<br>";
         template += "Car(s): " + x.getCars() + "<br>";
