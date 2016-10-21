@@ -1,3 +1,29 @@
+/*$(document).ready(function(){
+    alert("document ready function");
+})*/ //you do not need more than one to run your code
+
+/*$(function(){
+    console.log("shortened ready function")
+})*/
+'use strict'
+
+$(function(){
+    $("#submit").click(submitEntry);
+    $("#display").dblclick(displayEntry);
+ /*   $("#test1").on("click",function(){
+        alert("Test Button Working");
+    });
+    $("#test2").on("mouseover",function(){
+        alert("mouseover working");
+    });
+    $("#test3").on("click",function(){
+        $("#submit").trigger("click");
+        $("#display").trigger("click");
+    });*/
+    $( "#tabs" ).tabs();
+    $( "#results" ).accordion();
+});//you can remove the onClick function from the button and customaize the jquery handler here.
+
 function Person() {
     var firstName = '';
     var lastName = '';
@@ -72,12 +98,15 @@ var personArray = []; //since this is above, our function can access it. this is
 function submitEntry() {
     var personObj = new Person();
     
-    var firstName = document.getElementById("firstName").value;
+    var firstName = $("#firstName").val();
+//    var firstName = document.getElementById("firstName").value;
     personObj.setFirstName(firstName);
     
-    var lastName = document.getElementById('lastName').value;
+    var lastName = $("#lastName").val();
+//    var lastName = document.getElementById('lastName').value;
     personObj.setLastName(lastName);
     
+//    var address = $("#add").val();
     var address = document.getElementById("add").value;
     personObj.setAddress(address);
     
@@ -94,12 +123,13 @@ function submitEntry() {
     personObj.setDob(dob);
     
     var genderList = document.getElementsByName("gender");
+    var g = ''
     for(var i=0; i<genderList.length; i++){
         if(genderList[i].checked){
-            gender = genderList[i].value;
+            g = genderList[i].value;
         }
     }
-    personObj.setGender(gender);
+    personObj.setGender(g);
     
     var carList = document.getElementsByName('carType');
     var x = '';
@@ -113,6 +143,7 @@ function submitEntry() {
     
     personObj.checkData();
     personArray.push(personObj);
+    displayEntry();
 //    checkArray(personArray);
 //    alert(firstName)
 }
@@ -144,10 +175,12 @@ function generateTable(sample) {
 
 
 function displayEntry() {
+//    result="Hello World - JQuery";
+    alert("SUBMISSION COMPLETED");
     var result = generateTable(personArray);
-    document.getElementById("results").innerHTML=result;
+//    document.getElementById("results").innerHTML=result;
+    $("#results").html(result);
 }
-
 
 /*var personArray = [];
 

@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Contact Info Form</title>
+        <link rel="stylesheet" href="/node_modules/jquery-ui/jquery-ui.css">
         <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
     </head>
     
@@ -58,7 +59,7 @@
                         Date of Birth
                     </div>
                     <div class="col-md-4">
-                        <input type="text" name="DOBirth" id="DOBirth" placeholder="Enter Birthday">
+                        <input type="text" name="DOB" id="DOBirth" placeholder="Enter Birthday">
                     </div>
                 </div>
                 
@@ -87,15 +88,22 @@
             </form>
         </div>
         
-        <button type="button" class="btn btn-primary" id="submit" onClick="submitEntry()">SUBMIT</button>
+        <button type="button" class="btn btn-primary" id="submit" >SUBMIT</button>
         
-        <button type="button" class="btn btn-danger" id="display" onClick="displayEntry()">DISPLAY</button>
+        <button type="button" class="btn btn-danger" id="display" >DISPLAY</button>
+        
+        <!--<button type="button" class='btn btn-warning' id=test1>TEST</button>
+        
+         <button type="button" class='btn btn-warning' id=test2>Mouseover</button>
+        
+        <button type="button" class="btn btn-warning" id="test3">TriggerTest</button>-->
         
         <div id="results">
             result text
         </div>
         
+        <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="/node_modules/jquery-ui/jquery-ui.js"></script>
         <script type="text/javascript" src="/scripts/person2.js"></script>
-        
     </body>
 </html>
