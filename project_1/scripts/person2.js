@@ -10,7 +10,7 @@
 $(function(){
     $("#submit").click(submitEntry);
     $("#display").dblclick(displayEntry);
- /*   $("#test1").on("click",function(){
+    $("#test1").on("click",function(){
         alert("Test Button Working");
     });
     $("#test2").on("mouseover",function(){
@@ -19,10 +19,10 @@ $(function(){
     $("#test3").on("click",function(){
         $("#submit").trigger("click");
         $("#display").trigger("click");
-    });*/
+    });
     $( "#tabs" ).tabs();
     $( "#results" ).accordion();
-});//you can remove the onClick function from the button and customaize the jquery handler here.
+});//you can remove the onClick function from the html button and customaize the jquery handler here.
 
 function Person() {
     var firstName = '';
