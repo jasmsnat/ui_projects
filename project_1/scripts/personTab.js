@@ -175,23 +175,28 @@ function validateEntry () {
     var address = $('#add').val();
     var dob = $('#DOBirth').val();
     
-    if(firstName.length==0) {
-        $('#firstErr').show();
+    var regEx1 =/^[a-z|A-Z]+$/;
+    var regEx2 = new RegExp('^([a-z]|[A-Z])+$');
+    var regEx3 = new RegExp('^([a-z]|[A-Z])([a-z]|[A-Z]|[1-9])+$', 'g');
+    var regEx4 = new RegExp('^([1-9])+ ([a-z]|[A-Z]| )+$', 'g');
+    //the spaces in regEx4 are intentional - they provide the user to input spaces between the house number and street as well as the various portions of the street name.
+    
+    //can also write the expression as regEx1.test(firstName == false)
+    if(firstName.length==0 || firstName.match(regEx1) == null) {
+        $('#firstErr').show(); 
     } else {
         $('#firstErr').hide();
     }
     
-    if(lastName.length==0) {
+    if(lastName.length==0 || lastName.match(regEx2) == null) {
        $('#lastErr').show();
     } else {
        $('#lastErr').hide();
     }
     
-    if(address.length==0) {
+    if(address.length==0 || address.match(regEx4) == null) {
         $('#addErr').show();
     } else {
         $('#addErr').hide();
     }
-
-    
 }
