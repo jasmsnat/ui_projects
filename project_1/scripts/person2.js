@@ -7,6 +7,8 @@
 })*/
 'use strict'
 
+
+//you can remove the onClick function from the html button and customaize the jquery handler here.
 $(function(){
     $("#submit").click(submitEntry);
     $("#display").dblclick(displayEntry);
@@ -22,7 +24,12 @@ $(function(){
     });
     $( "#tabs" ).tabs();
     $( "#results" ).accordion();
-});//you can remove the onClick function from the html button and customaize the jquery handler here.
+    
+    $('#sample').hide();
+    $('#sampleBtn').click(toggleHide);
+    //    toggleHide(); //event handler for the show/hide
+});
+
 
 function Person() {
     var firstName = '';
@@ -180,6 +187,14 @@ function displayEntry() {
     var result = generateTable(personArray);
 //    document.getElementById("results").innerHTML=result;
     $("#results").html(result);
+}
+
+function toggleHide() { //this is an event handler
+    if ($('#sample').is(":visible")) {
+        $('#sample').hide();
+    } else {
+        $('#sample').show();
+    }
 }
 
 /*var personArray = [];

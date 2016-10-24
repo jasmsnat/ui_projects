@@ -12,7 +12,8 @@ $(function(){
     $("#display").dblclick(displayEntry);
     $("#tabs").tabs();
     $("#DOBirth").datepicker();
-
+    $('.error-msg').hide();
+    $('#validate').on("click", validateEntry);
 });//you can remove the onClick function from the html button and customaize the jquery handler here.
 
 function Person() {
@@ -165,4 +166,32 @@ function displayEntry() {
         active: false,
         heightStyle: "content"
     });
+}
+
+function validateEntry () {
+    var error = 0; //we will need this for css of error message?
+    var firstName = $('#firstName').val();
+    var lastName = $('#lastName').val();
+    var address = $('#add').val();
+    var dob = $('#DOBirth').val();
+    
+    if(firstName.length==0) {
+        $('#firstErr').show();
+    } else {
+        $('#firstErr').hide();
+    }
+    
+    if(lastName.length==0) {
+       $('#lastErr').show();
+    } else {
+       $('#lastErr').hide();
+    }
+    
+    if(address.length==0) {
+        $('#addErr').show();
+    } else {
+        $('#addErr').hide();
+    }
+
+    
 }
