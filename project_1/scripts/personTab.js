@@ -8,12 +8,39 @@
 'use strict'
 
 $(function(){
-    $("#submit").click(submitEntry);
-    $("#display").dblclick(displayEntry);
+    $("#submit").click(submitEntry).prop("disabled",true);
+//    $("#submit").prop("disabled",true); //should just chain it to save resources and prevent a double DOM tree search
+//    $("#display").dblclick(displayEntry);
     $("#tabs").tabs();
     $("#DOBirth").datepicker();
     $('.error-msg').hide();
     $('#validate').on("click", validateEntry);
+    
+    $('#errorDialog').dialog({
+        autoOpen: false
+    });
+    
+    $('#formDialog').dialog({
+        autoOpen: false,
+        modal: true,
+        buttons: {
+            "Submit": function() {
+                alert("submitting");    
+            },
+            "Cancel": function() {
+                $(this).dialog("close");
+            },
+        }    
+    });
+    
+    $('#openForm').on("click", function(){
+        $('#formDialog').dialog("open");
+    });
+    //These are both ways to write the click function for the openForm 
+    $("#openForm").click(function(){
+        $('#formDialog').dialog("open");
+    });
+    
 });//you can remove the onClick function from the html button and customaize the jquery handler here.
 
 function Person() {
@@ -86,15 +113,14 @@ function submitEntry() {
     
     var firstName = $("#firstName").val();
 //    var firstName = document.getElementById("firstName").value;
-    personObj.setFirstName(firstName);
     
     var lastName = $("#lastName").val();
 //    var lastName = document.getElementById('lastName').value;
-    personObj.setLastName(lastName);
     
 //    var address = $("#add").val();
     var address = document.getElementById("add").value;
-    personObj.setAddress(address);
+    
+    var dob = document.getElementById('DOBirth').value;
     
     var continentList = document.getElementsByName('cont');
     var c = '';
@@ -103,11 +129,7 @@ function submitEntry() {
             c = continentList[i].value;
         }
     }
-    personObj.setContinent(c);
-    
-    var dob = document.getElementById('DOBirth').value;
-    personObj.setDob(dob);
-    
+        
     var genderList = document.getElementsByName("gender");
     var g = ''
     for(var i=0; i<genderList.length; i++){
@@ -115,7 +137,6 @@ function submitEntry() {
             g = genderList[i].value;
         }
     }
-    personObj.setGender(g);
     
     var carList = document.getElementsByName('carType');
     var x = '';
@@ -125,11 +146,52 @@ function submitEntry() {
         }
     }
     if(x) x = x.substring(1);
-    personObj.setCars(x);
     
-    personObj.checkData();
-    personArray.push(personObj);
-    displayEntry();
+//    This is the error checking code
+    var error = 0;
+    var regEx1 =/^[a-z|A-Z]+$/;
+    var regEx2 = new RegExp('^([a-z]|[A-Z])+$');
+    var regEx3 = new RegExp('^([a-z]|[A-Z])([a-z]|[A-Z]|[1-9])+$', 'g');
+    var regEx4 = new RegExp('^([1-9]|[a-z]|[A-Z]| )+$', 'g');
+    //the spaces in regEx4 are intentional - they provide the user to input spaces between the house number and street as well as the various portions of the street name.
+    
+    //can also write the expression as regEx1.test(firstName == false)
+    if(firstName.length==0 || firstName.match(regEx1) == null) {
+        $('#firstErr').show(); 
+        error++;
+    } else {
+        $('#firstErr').hide();
+    }
+    
+    if(lastName.length==0 || lastName.match(regEx2) == null) {
+       $('#lastErr').show();
+        error++;
+    } else {
+       $('#lastErr').hide();
+    }
+    
+    if(address.length==0 || address.match(regEx4) == null) {
+        $('#addErr').show();
+        error++;
+    } else {
+        $('#addErr').hide();
+    }
+    
+    if (error==0) {
+        personObj.setFirstName(firstName);
+        personObj.setLastName(lastName);
+        personObj.setAddress(address);
+        personObj.setContinent(c);
+        personObj.setDob(dob);
+        personObj.setGender(g);
+        personObj.setCars(x);
+    //    personObj.checkData();
+        personArray.push(personObj);
+        displayEntry();
+    } else {
+        $('#dialog').dialog("open");
+//        $("#submit").click(submitEntry).prop("disabled",true);
+    }
 }
 
 
@@ -178,25 +240,35 @@ function validateEntry () {
     var regEx1 =/^[a-z|A-Z]+$/;
     var regEx2 = new RegExp('^([a-z]|[A-Z])+$');
     var regEx3 = new RegExp('^([a-z]|[A-Z])([a-z]|[A-Z]|[1-9])+$', 'g');
-    var regEx4 = new RegExp('^([1-9])+ ([a-z]|[A-Z]| )+$', 'g');
+    var regEx4 = new RegExp('^([1-9]|[a-z]|[A-Z])+$', 'g');
     //the spaces in regEx4 are intentional - they provide the user to input spaces between the house number and street as well as the various portions of the street name.
     
     //can also write the expression as regEx1.test(firstName == false)
     if(firstName.length==0 || firstName.match(regEx1) == null) {
         $('#firstErr').show(); 
+        error++;
     } else {
         $('#firstErr').hide();
     }
     
     if(lastName.length==0 || lastName.match(regEx2) == null) {
        $('#lastErr').show();
+       error++;
     } else {
        $('#lastErr').hide();
     }
     
     if(address.length==0 || address.match(regEx4) == null) {
         $('#addErr').show();
+        error++;
     } else {
         $('#addErr').hide();
     }
+    
+    if (error==0) {
+        $("#submit").prop("disabled",false);
+    } else {
+        $("#errorCount").html(error); //this will be the error count
+        $('#errorDialog').dialog("open");
+    }   
 }

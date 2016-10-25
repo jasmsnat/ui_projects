@@ -108,12 +108,26 @@
                         </div>
                     </form>
                 </div>
-                <button type="button" class="btn btn-primary" id="submit" >SUBMIT</button>
-                <button type="button" class="btn btn-warning" id="validate">VALIDATE</button>
+                <button type="button" class="btn btn-primary" id="submit" >SUBMIT</button> <!--You can also disable the submit button from the html button disabled="true"-->  
+                <button type="button" class="btn btn-warning" id="validate">VALIDATE</button>  
             </div>
             <div id="resultTab">
             </div>          
         </div>
+        
+        <!--Dialog materials go here-->
+        <div id="errorDialog" title="Errors">
+            <p><span id="errorCount"></span> error(s) found. Please fix it.</p>
+        </div>
+        
+        <div id="formDialog" title="Sample Form">
+            <form>
+                First Name : <input type="text" name="firstName"><br>
+                Last Name : <input type="text" name="lastName">
+            </form>
+        </div>
+        
+        <button type="button" class="btn btn-danger" id="openForm">Open Form</button>
         
         <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="/node_modules/jquery-ui/jquery-ui.js"></script>
