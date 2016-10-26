@@ -8,13 +8,13 @@
 'use strict'
 
 $(function(){
-    $("#submit").click(submitEntry).prop("disabled",true);
+    $("#submit").click(submitEntry);//.prop("disabled",true);
 //    $("#submit").prop("disabled",true); //should just chain it to save resources and prevent a double DOM tree search
 //    $("#display").dblclick(displayEntry);
     $("#tabs").tabs();
     $("#DOBirth").datepicker();
     $('.error-msg').hide();
-    $('#validate').on("click", validateEntry);
+//    $('#validate').on("click", validateEntry).prop("disabled",true);
     
     $('#errorDialog').dialog({
         autoOpen: false
@@ -147,16 +147,18 @@ function submitEntry() {
     }
     if(x) x = x.substring(1);
     
-//    This is the error checking code
-    var error = 0;
+    var error = 0; //This is the error checking counter. Initialized at a value of 0
+    
+    // Variations of Regular Expressions - testing
     var regEx1 =/^[a-z|A-Z]+$/;
+//    var regEx1 =/^[a-z|A-Z|\s|\S]+$/; //the \s is for whitespace characters. the \S is for non-whitespace characters (i.e. commas)
     var regEx2 = new RegExp('^([a-z]|[A-Z])+$');
     var regEx3 = new RegExp('^([a-z]|[A-Z])([a-z]|[A-Z]|[1-9])+$', 'g');
-    var regEx4 = new RegExp('^([1-9]|[a-z]|[A-Z]| )+$', 'g');
-    //the spaces in regEx4 are intentional - they provide the user to input spaces between the house number and street as well as the various portions of the street name.
+    var regEx4 = new RegExp('^([1-9]|[a-z]|[A-Z]|,| )+$', 'g');
+    //the spaces in regEx4 are intentional - they provide the user to input spaces between the house number and street as well as the various portions of the street name. The comma allows for commas to be inserted.
     
-    //can also write the expression as regEx1.test(firstName == false)
-    if(firstName.length==0 || firstName.match(regEx1) == null) {
+    //can also write the expression as regEx1.test(firstName) == false
+    if(firstName.length==0 || regEx1.test(firstName) == false) {
         $('#firstErr').show(); 
         error++;
     } else {
@@ -189,7 +191,7 @@ function submitEntry() {
         personArray.push(personObj);
         displayEntry();
     } else {
-        $('#dialog').dialog("open");
+//        $('#dialog').dialog("open");
 //        $("#submit").click(submitEntry).prop("disabled",true);
     }
 }
