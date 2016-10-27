@@ -4,11 +4,10 @@
         <title>Contact Info Tabs</title>
         <link rel="stylesheet" href="/node_modules/jquery-ui/jquery-ui.css">
         <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
-        
         <style>
             .error-msg {
                 color:red;
-            }
+            }            
         </style>
     </head>
     
@@ -108,28 +107,31 @@
                         </div>
                     </form>
                 </div>
-                <button type="button" class="btn btn-primary" id="submit" >SUBMIT</button> <!--You can also disable the submit button from the html button disabled="true"-->  
+                <button type="button" class="btn btn-primary" id="submit">SUBMIT</button> <!--You can also disable the submit button from the html button disabled="true"-->  
                 <!--<button type="button" class="btn btn-warning" id="validate">VALIDATE</button>  -->
             </div>
             <div id="resultTab">
-                
-            </div>          
-        </div>
-        
-        <!--Dialog materials go here-->
-        <div id="errorDialog" title="Errors">
-            <p><span id="errorCount"></span> error(s) found. Please fix it.</p>
+                <div id="resultSection">
+                    <!--This is where the results populate-->
+                </div>
+                <div>
+                    <button type="button" class="btn btn-danger" id="openForm">Edit</button>
+                </div>
+            </div>
         </div>
         
         <div id="formDialog" title="Sample Form">
             <form>
-                First Name : <input type="text" name="firstName"><br>
-                Last Name : <input type="text" name="lastName">
+                First Name : <input type="text" name="firstName" id="editFirst"><br>
+                Last Name : <input type="text" name="lastName" id="editLast"><br>
             </form>
         </div>
         
-        <button type="button" class="btn btn-danger" id="openForm">Open Form</button>
-        
+        <!--Dialog materials go here-->
+        <!--<div id="errorDialog" title="Errors">
+            <p><span id="errorCount"></span> error(s) found. Please fix it.</p>
+        </div>-->
+            
         <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="/node_modules/jquery-ui/jquery-ui.js"></script>
         <script type="text/javascript" src="/scripts/personTab.js"></script>

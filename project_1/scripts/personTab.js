@@ -7,6 +7,7 @@
 })*/
 'use strict'
 
+//event hanlder
 $(function(){
     $("#submit").click(submitEntry);//.prop("disabled",true);
 //    $("#submit").prop("disabled",true); //should just chain it to save resources and prevent a double DOM tree search
@@ -16,33 +17,35 @@ $(function(){
     $('.error-msg').hide();
 //    $('#validate').on("click", validateEntry).prop("disabled",true);
     
-    $('#errorDialog').dialog({
+    /*$('#errorDialog').dialog({
         autoOpen: false
-    });
+    });*/
     
     $('#formDialog').dialog({
         autoOpen: false,
         modal: true,
         buttons: {
-            "Submit": function() {
-                alert("submitting");    
+            "Save": function() {
+                alert("saving");    
             },
             "Cancel": function() {
                 $(this).dialog("close");
-            },
+            }
         }    
     });
     
-    $('#openForm').on("click", function(){
-        $('#formDialog').dialog("open");
-    });
-    //These are both ways to write the click function for the openForm 
     $("#openForm").click(function(){
         $('#formDialog').dialog("open");
+        testAcc();
     });
+   /* $('#openForm').on("click", function(){
+        $('#formDialog').dialog("open");
+    });*/
+    //These are both ways to write the click function for the openForm
     
 });//you can remove the onClick function from the html button and customaize the jquery handler here.
 
+//person function getters/setters
 function Person() {
     var firstName = '';
     var lastName = '';
@@ -106,8 +109,10 @@ function Person() {
     }   
 }
 
+//array for storing person info
 var personArray = []; //since this is above, our function can access it. this is because it is a variable and must be declared before it can be called.
 
+//submit function to validate person info and send to array via display
 function submitEntry() {
     var personObj = new Person();
     
@@ -155,6 +160,7 @@ function submitEntry() {
     var regEx2 = new RegExp('^([a-z]|[A-Z])+$');
     var regEx3 = new RegExp('^([a-z]|[A-Z])([a-z]|[A-Z]|[1-9])+$', 'g');
     var regEx4 = new RegExp('^([1-9]|[a-z]|[A-Z]|,| )+$', 'g');
+    var regEx5 = new RegExp('^[a-z|A-Z|\s|\S]+$');
     //the spaces in regEx4 are intentional - they provide the user to input spaces between the house number and street as well as the various portions of the street name. The comma allows for commas to be inserted.
     
     //can also write the expression as regEx1.test(firstName) == false
@@ -172,7 +178,7 @@ function submitEntry() {
        $('#lastErr').hide();
     }
     
-    if(address.length==0 || address.match(regEx4) == null) {
+    if(address.length==0 || regEx5.test(address) == null) {
         $('#addErr').show();
         error++;
     } else {
@@ -191,12 +197,13 @@ function submitEntry() {
         personArray.push(personObj);
         displayEntry();
     } else {
+        alert("Please fix the flagged error(s)");
 //        $('#dialog').dialog("open");
 //        $("#submit").click(submitEntry).prop("disabled",true);
     }
 }
 
-
+//generates table for the display entry
 function generateTable(sample) {
     var template = "";
     
@@ -218,13 +225,13 @@ function generateTable(sample) {
     return template;
 }
 
-
+//occurrs after submit function passes array through table to generate results
 function displayEntry() {
 //    result="Hello World - JQuery";
     //alert("SUBMISSION COMPLETED");
     var result = generateTable(personArray);
 //    document.getElementById("results").innerHTML=result;
-    $("#resultTab").html(result);
+    $("#resultSection").html(result);
     $(".accordion").accordion({
         collapsible: true,
         active: false,
@@ -232,7 +239,8 @@ function displayEntry() {
     });
 }
 
-function validateEntry () {
+//validate errors --  merged with submit. this is not being used.
+function validateEntry() {
     var error = 0; //we will need this for css of error message?
     var firstName = $('#firstName').val();
     var lastName = $('#lastName').val();
@@ -274,3 +282,18 @@ function validateEntry () {
         $('#errorDialog').dialog("open");
     }   
 }
+
+function testAcc() {
+    var currentFirst = personArray[0].getFirstName();
+    
+}
+
+
+function testDisplay() {
+    
+}
+
+
+
+
+
