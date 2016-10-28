@@ -6,23 +6,25 @@ $(function(){
     $("#tabs").tabs();
     $("#DOBirth").datepicker();
     $('.error-msg').hide();
-    
     $('#dialogMain').dialog({
         autoOpen: false,
         modal: true,
-        buttons: {
+        /*buttons: {
             "Save": function() {
-                alert("saving");    
+                editSave();
+                $(this).dialog("close");
             },
             "Cancel": function() {
                 $(this).dialog("close");
             }
-        }    
+        }  */  
+    });
+    $('#cancelForm').click(function(){
+        $('#dialogMain').dialog("close");
     });
     
-    $("#openForm").click(function(){
-        $('#dialogMain').dialog("open");
-        testAcc();
+    $('#saveForm').click(function(){
+        editSave();
     });
 });
 
@@ -215,21 +217,29 @@ function displayEntry() {
         active: false,
         heightStyle: "content"
     });
-    editEntry();
+    editDisplay();
 }
 
-function editEntry() {
-        var per;
-        $('.editBtn').click(function(){
-            per = $(this).attr("val");
-//            alert(test);
-            $('#dialogForm').val([per]);
-            $('#editFirst').val(personArray[per].getFirstName());
-            $('#editLast').val(personArray[per].getLastName());
-            $('#dialogMain').dialog("open"); 
-        })
+function editDisplay() {
+    var per;
+    $('.editBtn').click(function(){
+        per = $(this).attr("val");
+        $('#dialogForm').val([per]);
+        $('#editFirst').val(personArray[per].getFirstName());
+        $('#editLast').val(personArray[per].getLastName());
+        $('#dialogMain').dialog("open");
+    });
 }
 
 function editSave() {
-    alert('checking editSave call');
+//alert('testing save');
+    var testObj = new Person();
+    var z = $('#dialogForm').val();
+    var x = document.getElementById('editFirst').value;
+    var y = document.getElementById('editLast').value;
+    testObj.setFirstName(x);
+    testObj.setLastName(y);
+    personArray[z] = testObj;
+    displayEntry();
+    $('#dialogMain').dialog("close");
 }
