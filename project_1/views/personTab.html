@@ -111,27 +111,22 @@
                 <!--<button type="button" class="btn btn-warning" id="validate">VALIDATE</button>  -->
             </div>
             <div id="resultTab">
-                <div id="resultSection">
-                    <!--This is where the results populate-->
-                </div>
-                <div>
-                    <button type="button" class="btn btn-danger" id="openForm">Edit</button>
-                </div>
+                    <!--This is where the results populate-->  
             </div>
         </div>
         
-        <div id="formDialog" title="Sample Form">
+        <div id="dialogMain" title="Sample Form">
             <form>
-                First Name : <input type="text" name="firstName" id="editFirst"><br>
-                Last Name : <input type="text" name="lastName" id="editLast"><br>
+                <input type="hidden" name="dialogForm" id="dialogForm">
+                First Name : <input type="text" name="editLastName" id="editFirst"><br>
+                Last Name : <input type="text" name="editLastName" id="editLast"><br>
             </form>
         </div>
-        
         <!--Dialog materials go here-->
         <!--<div id="errorDialog" title="Errors">
             <p><span id="errorCount"></span> error(s) found. Please fix it.</p>
         </div>-->
-            
+                    
         <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="/node_modules/jquery-ui/jquery-ui.js"></script>
         <script type="text/javascript" src="/scripts/personTab.js"></script>

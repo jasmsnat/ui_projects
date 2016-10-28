@@ -21,7 +21,7 @@ $(function(){
         autoOpen: false
     });*/
     
-    $('#formDialog').dialog({
+    $('#dialogMain').dialog({
         autoOpen: false,
         modal: true,
         buttons: {
@@ -35,11 +35,13 @@ $(function(){
     });
     
     $("#openForm").click(function(){
-        $('#formDialog').dialog("open");
+        $('#dialogMain').dialog("open");
         testAcc();
     });
+    
+   
    /* $('#openForm').on("click", function(){
-        $('#formDialog').dialog("open");
+        $('#dialogMain').dialog("open");
     });*/
     //These are both ways to write the click function for the openForm
     
@@ -122,8 +124,8 @@ function submitEntry() {
     var lastName = $("#lastName").val();
 //    var lastName = document.getElementById('lastName').value;
     
-//    var address = $("#add").val();
-    var address = document.getElementById("add").value;
+    var address = $("#add").val();
+//    var address = document.getElementById("add").value;
     
     var dob = document.getElementById('DOBirth').value;
     
@@ -206,11 +208,11 @@ function submitEntry() {
 //generates table for the display entry
 function generateTable(sample) {
     var template = "";
-    
+    var per = 0;
     template += "<div class='accordion'>";
     sample.forEach(function(x){
         template += "<h3>" + x.getLastName() + ", " + x.getFirstName() + "</h3>";
-        template += "<div>";
+        template += "<div class='tempList' val='"+[per]+"'>";
         template += "First Name: " + x.getFirstName() + 
             "<br> Last Name: " + x.getLastName() + 
             "<br> Address: " + x.getAddress() + 
@@ -219,7 +221,9 @@ function generateTable(sample) {
             "<br> Gender: " + x.getGender() + 
             "<br> Car(s):" + x.getCars() + 
             "<br>";
+        template += "<button type='button' class='btn btn-info pull-right editBtn' val='"+per+"'>" + "Edit" + "</button>";
         template += "</div>";
+        per++;
     });
     template += "</div>";
     return template;
@@ -231,12 +235,14 @@ function displayEntry() {
     //alert("SUBMISSION COMPLETED");
     var result = generateTable(personArray);
 //    document.getElementById("results").innerHTML=result;
-    $("#resultSection").html(result);
+    $("#resultTab").html(result);
+    
     $(".accordion").accordion({
         collapsible: true,
         active: false,
         heightStyle: "content"
     });
+    editEntry();
 }
 
 //validate errors --  merged with submit. this is not being used.
@@ -283,17 +289,18 @@ function validateEntry() {
     }   
 }
 
-function testAcc() {
-    var currentFirst = personArray[0].getFirstName();
-    
+function editEntry() {
+        var per;
+        $('.editBtn').click(function(){
+            per = $(this).attr("val");
+//            alert(test);
+            $('#dialogForm').val([per]);
+            $('#editFirst').val(personArray[per].getFirstName());
+            $('#editLast').val(personArray[per].getLastName());
+            $('#dialogMain').dialog("open"); 
+        })
 }
 
-
-function testDisplay() {
-    
+function editSave() {
+    alert('checking editSave call');
 }
-
-
-
-
-
