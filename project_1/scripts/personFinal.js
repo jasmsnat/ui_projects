@@ -19,13 +19,11 @@ $(function(){
             }
         }  */  
     });
+    $('#editDob').datepicker();
     $('#cancelForm').click(function(){
         $('#dialogMain').dialog("close");
     });
-    
-    $('#saveForm').click(function(){
-        editSave();
-    });
+    $('#saveForm').click(editSave);
 });
 
 function Person() {
@@ -174,7 +172,7 @@ function submitEntry() {
         personArray.push(personObj);
         displayEntry();
     } else {
-        alert("Please fix the flagged error(s)");
+        alert("Invalid entry detected. Please fix the flagged error(s)");
 //        $('#dialog').dialog("open");
 //        $("#submit").click(submitEntry).prop("disabled",true);
     }
@@ -227,19 +225,49 @@ function editDisplay() {
         $('#dialogForm').val([per]);
         $('#editFirst').val(personArray[per].getFirstName());
         $('#editLast').val(personArray[per].getLastName());
+        $('#editAddress').val(personArray[per].getAddress());   
+
+        //CONTINENT DISPLAY
+//        alert(personArray[per].getContinent());
+        /*var currentCont = personArray[per].getContinent();
+        var contList = document.getElementsByName('editCont');
+        var contDisp = '';
+        for(var i=0; i<contList.length; i++) {
+            if(currentCont = contList[i]) {
+                contDisp = contList[i].value;
+            }
+        }
+        
+        $("[name*='editCont']").val(personArray[per].getContinent());
+        
+        $('#testCont').val(personArray[per].getContinent());*/
+        
+        
+    
         $('#dialogMain').dialog("open");
     });
 }
 
 function editSave() {
 //alert('testing save');
-    var testObj = new Person();
-    var z = $('#dialogForm').val();
-    var x = document.getElementById('editFirst').value;
-    var y = document.getElementById('editLast').value;
-    testObj.setFirstName(x);
-    testObj.setLastName(y);
-    personArray[z] = testObj;
+    var editPersonObj = new Person();
+    var per = $('#dialogForm').val();
+    var editFirstName = document.getElementById('editFirst').value;
+    var editLastName = document.getElementById('editLast').value;
+    var editAddress = $('#editAddress').val();
+    var editContinent = document.getElementsByName('editCont');
+    var newCont = '';
+    for(var i=0; i<editContinent.length; i++) {
+        if(editContinent[i].selected) {
+            newCont = editContinent[i].value;
+        }
+    }
+
+    editPersonObj.setFirstName(editFirstName);
+    editPersonObj.setLastName(editLastName);
+    editPersonObj.setAddress(editAddress);
+    editPersonObj.setContinent(newCont);
+    personArray[per] = editPersonObj;
     displayEntry();
     $('#dialogMain').dialog("close");
 }

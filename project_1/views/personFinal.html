@@ -110,17 +110,30 @@
                 <button type="button" class="btn btn-primary" id="submit">SUBMIT</button>
             </div>
             <div id="resultTab">
-                    Results pending...
+                    No current entries...
             </div>
         </div>
         
         <div id="dialogMain" title="Sample Form">
             <form>
                 <input type="hidden" name="dialogForm" id="dialogForm">
-                First Name : <input type="text" name="editFirstName" id="editFirst"><br>
-                Last Name : <input type="text" name="editLastName" id="editLast"><br>
-                <button type="button" class="btn btn-primary" id="saveForm">Save</button>
-                <button type="button" class="btn btn-warning" id="cancelForm">Cancel</button>
+                First Name : <input type="text" name="editFirst" id="editFirst"><br>
+                Last Name : <input type="text" name="editLast" id="editLast"><br>
+                Address : <input type="text" name="editAddress" id="editAddress"><br>
+                Continent: 
+                    <select>
+                        <option name='editCont' id='editNA' value="North America">North America</option>
+                        <option name='editCont' id='editSA' value="South America">South America</option>
+                        <option name='editCont' id='editAsia' value='Asia'>Asia</option>
+                        <option name='editCont' id='editEuro' value='Europe'>Europe</option>
+                        <option name='editCont' id='editAfri' value='Africa'>Africa</option>
+                        <option name='editCont' id='editAust' value='Australia'>Australia</option>
+                        <option name='editCont' id='editAnta' value='Antarctica'>Antarctica</option>
+                    </select>
+                    <br>
+                Date of Birth: <input name='editDob' id='editDob'><br>
+                <button type="button" class="btn btn-warning pull-right" id="cancelForm">Cancel</button>
+                <button type="button" class="btn btn-primary pull-right" id="saveForm">Save</button>
             </form>
         </div>
                     
