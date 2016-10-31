@@ -8,16 +8,12 @@ $(function(){
     $('.error-msg').hide();
     $('#dialogMain').dialog({
         autoOpen: false,
+//        bgiframe: true,
+        height: 350,
+        width: 500,
+        draggable: false,
+        resizable: false,
         modal: true,
-        /*buttons: {
-            "Save": function() {
-                editSave();
-                $(this).dialog("close");
-            },
-            "Cancel": function() {
-                $(this).dialog("close");
-            }
-        }  */  
     });
     $('#editDob').datepicker();
     $('#cancelForm').click(function(){
@@ -113,7 +109,7 @@ function submitEntry() {
     }
         
     var genderList = document.getElementsByName("gender");
-    var g = ''
+    var g = '';
     for(var i=0; i<genderList.length; i++){
         if(genderList[i].checked){
             g = genderList[i].value;
@@ -225,8 +221,9 @@ function editDisplay() {
         $('#dialogForm').val([per]);
         $('#editFirst').val(personArray[per].getFirstName());
         $('#editLast').val(personArray[per].getLastName());
-        $('#editAddress').val(personArray[per].getAddress());   
-
+        $('#editAddress').val(personArray[per].getAddress());  
+        $('#editDob').val(personArray[per].getDob());
+        
         //CONTINENT DISPLAY
 //        alert(personArray[per].getContinent());
         /*var currentCont = personArray[per].getContinent();
@@ -241,6 +238,13 @@ function editDisplay() {
         $("[name*='editCont']").val(personArray[per].getContinent());
         
         $('#testCont').val(personArray[per].getContinent());*/
+        /*var contList = document.getElementsByName('editCont');
+        var currCont = personArray[per].getContinent();
+        for(var i=0; i<contList.length; i++) {
+            if (currCont = contList[i].value) {
+                contList[i].selected;
+            }
+        }*/
         
         
     
@@ -252,9 +256,12 @@ function editSave() {
 //alert('testing save');
     var editPersonObj = new Person();
     var per = $('#dialogForm').val();
-    var editFirstName = document.getElementById('editFirst').value;
-    var editLastName = document.getElementById('editLast').value;
+    var editFirstName = $('#editFirst').val();
+    var editLastName = $('#editLast').val();
     var editAddress = $('#editAddress').val();
+    var editDate = $('#editDob').val(); 
+    
+//editBtn registers the last entry from edit dialog that was saved.
     var editContinent = document.getElementsByName('editCont');
     var newCont = '';
     for(var i=0; i<editContinent.length; i++) {
@@ -262,11 +269,23 @@ function editSave() {
             newCont = editContinent[i].value;
         }
     }
+        
+//having trouble changing gender - will have same issue with cars.
+//editBtn registers the last entry from edit dialog that was saved.
+    var editGen = document.getElementsByName('editGender');
+    var newGen = '';
+    for(var i=0; i<editGen.length; i++) {
+        if(editGen[i].checked) {
+            newGen = editGen[i].value;
+        }
+    }
 
     editPersonObj.setFirstName(editFirstName);
     editPersonObj.setLastName(editLastName);
     editPersonObj.setAddress(editAddress);
     editPersonObj.setContinent(newCont);
+    editPersonObj.setDob(editDate);
+    editPersonObj.setGender(newGen);
     personArray[per] = editPersonObj;
     displayEntry();
     $('#dialogMain').dialog("close");

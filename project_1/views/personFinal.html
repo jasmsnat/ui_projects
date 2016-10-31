@@ -131,7 +131,12 @@
                         <option name='editCont' id='editAnta' value='Antarctica'>Antarctica</option>
                     </select>
                     <br>
-                Date of Birth: <input name='editDob' id='editDob'><br>
+                Date of Birth: <input type='text' id='editDob'><br>
+                Gender:
+                    <input type="radio" name="editGender" id="editMale" value="Male"> Male
+                    <input type="radio" name="editGender" id="editFemale" value="Female"> Female
+                    <input type="radio" name="editGender" id="editIdentify" value="I do not identify"> I choose not to identify
+                <br>
                 <button type="button" class="btn btn-warning pull-right" id="cancelForm">Cancel</button>
                 <button type="button" class="btn btn-primary pull-right" id="saveForm">Save</button>
             </form>
