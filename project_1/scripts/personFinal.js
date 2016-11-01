@@ -223,31 +223,26 @@ function editDisplay() {
         $('#editLast').val(personArray[per].getLastName());
         $('#editAddress').val(personArray[per].getAddress());  
         $('#editDob').val(personArray[per].getDob());
-        
-        //CONTINENT DISPLAY
-//        alert(personArray[per].getContinent());
-        /*var currentCont = personArray[per].getContinent();
-        var contList = document.getElementsByName('editCont');
-        var contDisp = '';
-        for(var i=0; i<contList.length; i++) {
-            if(currentCont = contList[i]) {
-                contDisp = contList[i].value;
+        $('#editCont').val(personArray[per].getContinent());
+
+        var a = document.getElementsByClassName('editGender');
+        var b = personArray[per].getGender();
+        for(var i=0; i<a.length; i++) {
+            if(b == a[i].value) {
+                $('#'+a[i].id).prop('checked', true);
+            }
+        }
+      
+        //WORKING ON CARS ARRAY
+//        alert(personArray[per].getCars());
+        var c = document.getElementsByName('editCar');
+        var d = personArray[per].getCars();
+        for(var i=0; i<c.length; i++) {
+            if($(d+":contains("+c[i].value+")")) {
+                $('#'+c[i].id).prop('checked', true);
             }
         }
         
-        $("[name*='editCont']").val(personArray[per].getContinent());
-        
-        $('#testCont').val(personArray[per].getContinent());*/
-        /*var contList = document.getElementsByName('editCont');
-        var currCont = personArray[per].getContinent();
-        for(var i=0; i<contList.length; i++) {
-            if (currCont = contList[i].value) {
-                contList[i].selected;
-            }
-        }*/
-        
-        
-    
         $('#dialogMain').dialog("open");
     });
 }
@@ -261,7 +256,6 @@ function editSave() {
     var editAddress = $('#editAddress').val();
     var editDate = $('#editDob').val(); 
     
-//editBtn registers the last entry from edit dialog that was saved.
     var editContinent = document.getElementsByName('editCont');
     var newCont = '';
     for(var i=0; i<editContinent.length; i++) {
@@ -269,14 +263,12 @@ function editSave() {
             newCont = editContinent[i].value;
         }
     }
-        
-//having trouble changing gender - will have same issue with cars.
-//editBtn registers the last entry from edit dialog that was saved.
-    var editGen = document.getElementsByName('editGender');
-    var newGen = '';
-    for(var i=0; i<editGen.length; i++) {
-        if(editGen[i].checked) {
-            newGen = editGen[i].value;
+    
+    var editGender = document.getElementsByName('editGender');
+    var newGender = '';
+    for(var i=0; i<editGender.length; i++) {
+        if(editGender[i].checked) {
+            newGender = editGender[i].value;
         }
     }
 
@@ -285,7 +277,7 @@ function editSave() {
     editPersonObj.setAddress(editAddress);
     editPersonObj.setContinent(newCont);
     editPersonObj.setDob(editDate);
-    editPersonObj.setGender(newGen);
+    editPersonObj.setGender(newGender);
     personArray[per] = editPersonObj;
     displayEntry();
     $('#dialogMain').dialog("close");

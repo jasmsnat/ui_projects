@@ -121,7 +121,7 @@
                 Last Name : <input type="text" name="editLast" id="editLast"><br>
                 Address : <input type="text" name="editAddress" id="editAddress"><br>
                 Continent: 
-                    <select>
+                    <select id='editCont'>
                         <option name='editCont' id='editNA' value="North America">North America</option>
                         <option name='editCont' id='editSA' value="South America">South America</option>
                         <option name='editCont' id='editAsia' value='Asia'>Asia</option>
@@ -129,14 +129,21 @@
                         <option name='editCont' id='editAfri' value='Africa'>Africa</option>
                         <option name='editCont' id='editAust' value='Australia'>Australia</option>
                         <option name='editCont' id='editAnta' value='Antarctica'>Antarctica</option>
-                    </select>
-                    <br>
+                    </select><br>
                 Date of Birth: <input type='text' id='editDob'><br>
                 Gender:
-                    <input type="radio" name="editGender" id="editMale" value="Male"> Male
-                    <input type="radio" name="editGender" id="editFemale" value="Female"> Female
-                    <input type="radio" name="editGender" id="editIdentify" value="I do not identify"> I choose not to identify
-                <br>
+                    <div>
+                        <input type="radio" name="editGender" class='editGender' id="editMale" value="Male"> Male
+                        <input type="radio" name="editGender" class='editGender' id="editFemale" value="Female"> Female
+                        <input type="radio" name="editGender" class='editGender' id="editIdentify" value="I do not identify"> I choose not to identify
+                    </div><br>
+                Cars:
+                    <div>
+                        <input type="checkbox" name="editCar" id="editBMW" value="BMW"> BMW
+                        <input type="checkbox" name="editCar" id="editJeep" value="Jeep"> Jeep
+                        <input type="checkbox" name="editCar" id="editDodge" value="Dodge"> Dodge
+                        <input type="checkbox" name="editCar" id="editPorsche" value="Porsche"> Porsche
+                    </div>
                 <button type="button" class="btn btn-warning pull-right" id="cancelForm">Cancel</button>
                 <button type="button" class="btn btn-primary pull-right" id="saveForm">Save</button>
             </form>
