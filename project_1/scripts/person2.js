@@ -189,7 +189,7 @@ function displayEntry() {
     $("#results").html(result);
 }
 
-function toggleHide() { //this is an event handler
+function toggleHide() { //this function contains event handlers
     if ($('#sample').is(":visible")) {
         $('#sample').hide();
     } else {
